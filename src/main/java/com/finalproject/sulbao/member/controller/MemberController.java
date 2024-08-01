@@ -2,18 +2,12 @@ package com.finalproject.sulbao.member.controller;
 
 import com.finalproject.sulbao.member.model.dto.MemberDTO;
 import com.finalproject.sulbao.member.model.service.MemberService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Controller
 @Slf4j
@@ -28,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "test/login";
     }
 
     @PostMapping("/login")
@@ -47,7 +41,7 @@ public class MemberController {
             model.addAttribute("errorFlg","error");
             log.info("login fail");
         }
-        return "login";
+        return "test/login";
     }
 
 }
