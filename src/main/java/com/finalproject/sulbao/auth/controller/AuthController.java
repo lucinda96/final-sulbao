@@ -93,13 +93,13 @@ public class AuthController {
     @GetMapping(value = {"/","/index"})
     public String index(Model model) {
 
-        List<ProductComparisonDTO> productList = productService.findByProductComparsionOrderByDesc();
-        model.addAttribute("productList", productList);
-
-        List<PostDto> zzanfeeds = postService.getWeeklyposts(ZZANFEED_ID);
-        List<PostDto> zzanposts = postService.getWeeklyposts(ZZANPOST_ID);
-        model.addAttribute("zzanfeeds", zzanfeeds);
-        model.addAttribute("zzanposts", zzanposts);
+//        List<ProductComparisonDTO> productList = productService.findByProductComparsionOrderByDesc();
+//        model.addAttribute("productList", productList);
+//
+//        List<PostDto> zzanfeeds = postService.getWeeklyposts(ZZANFEED_ID);
+//        List<PostDto> zzanposts = postService.getWeeklyposts(ZZANPOST_ID);
+//        model.addAttribute("zzanfeeds", zzanfeeds);
+//        model.addAttribute("zzanposts", zzanposts);
 
         return "index";
     }
