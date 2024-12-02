@@ -24,11 +24,6 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    @GetMapping("/upload")
-    public String getUpload(){
-        return "testEditor";
-    }
-
     @PostMapping("/product/image-upload")
     @ResponseBody
     public String uploadImage(@RequestParam MultipartFile file) throws IOException {
