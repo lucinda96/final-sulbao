@@ -39,4 +39,4 @@ spring:
     productBucket: sulbao-file/product
 
 file:
-  upload-dir: /
+  upload-dir: ${{secrets.FILE_UPLOAD_DIR}}
