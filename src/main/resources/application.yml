@@ -31,6 +31,7 @@ spring:
     multipart:
       max-file-size: 30MB
       max-request-size: 30MB
+      enabled: true
   s3:
     bucket: sulbao-file
     accessKey: ${{secrets.NCP_ACCESSKEY}}

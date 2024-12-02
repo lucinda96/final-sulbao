@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
@@ -21,6 +24,9 @@ public class FileService {
 
     @Value("${spring.s3.bucket}")
     private String bucketName;
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     public FileService(AmazonS3Client amazonS3Client) {
         this.amazonS3Client = amazonS3Client;
@@ -57,21 +63,27 @@ public class FileService {
         String uploadFileName = getUuidFileName(originalFileName);
         String uploadFileUrl = "";
 
-        ObjectMetadata objectMetadata = setMetadata(multipartFile);
+        // 업로드할 폴더 생성(년/월)
+        String folderPath = makeFolder();
+        // 저장할 파일경로 생성
+        String saveFileName = uploadDir + "/" + folderPath + "/" + uploadFileName;
 
-        try (InputStream inputStream = multipartFile.getInputStream()) {
-
-            // S3에 폴더 및 파일 업로드
-            amazonS3Client.putObject(
-                    new PutObjectRequest(bucketName, uploadFileName, inputStream, objectMetadata)
-                            .withCannedAcl(CannedAccessControlList.PublicRead));
-
-            // S3에 업로드한 폴더 및 파일 URL
-            uploadFileUrl = "https://kr.object.ncloudstorage.com/"+ bucketName + "/" + uploadFileName;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+// 이전 파일 업로드 코드
+//        ObjectMetadata objectMetadata = setMetadata(multipartFile);
+//
+//        try (InputStream inputStream = multipartFile.getInputStream()) {
+//
+//            // S3에 폴더 및 파일 업로드
+//            amazonS3Client.putObject(
+//                    new PutObjectRequest(bucketName, uploadFileName, inputStream, objectMetadata)
+//                            .withCannedAcl(CannedAccessControlList.PublicRead));
+//
+//            // S3에 업로드한 폴더 및 파일 URL
+//            uploadFileUrl = "https://kr.object.ncloudstorage.com/"+ bucketName + "/" + uploadFileName;
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         return FileDto.builder()
                             .originalFileName(originalFileName)
@@ -81,5 +93,21 @@ public class FileService {
                             .build();
     }
 
+    // 원본 및 썸네일 이미지 저장하는 폴더 생성
+    private String makeFolder() {
+        String str= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM"));
+        String folderPath = str.replace("/", File.separator);
+        File uploadPathFolder = new File(uploadDir, folderPath);
+
+        // 원본이미지 폴더
+        if(!uploadPathFolder.exists()) {
+            boolean mkdirs = uploadPathFolder.mkdirs();
+            log.info("-------------------makeFolder------------------");
+            log.info("uploadPathFolder.exists(): {}", uploadPathFolder.exists());
+            log.info("mkdirs: {}", mkdirs);
+        }
+
+        return folderPath;
+    }
 
 }
