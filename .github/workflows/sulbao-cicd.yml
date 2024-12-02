@@ -39,6 +39,8 @@ jobs:
         spring.datasource.password: ${{ secrets.DB_PASSWORD }}
         spring.s3.accessKey: ${{ secrets.NCP_ACCESSKEY }}
         spring.s3.secretKey: ${{ secrets.NCP_SECRETKEY }}
+        file.upload-dir: ${{ secrets.FILE_UPLOAD_DIR }}
+        
     # Gradle 실행 권한 부여
     - name: Grant permission for gradlew
       run: chmod +x ./gradlew
