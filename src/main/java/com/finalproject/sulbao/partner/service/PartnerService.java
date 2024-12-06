@@ -38,16 +38,17 @@ public class PartnerService {
 
                 // 파일 가로세로 px 확인
                 // 제시한 파일의 기준 크기에 맞춰서 올렸는지 확인 필요(이부분은 신설사업팀에게 안 맞출경우 늘어난다고 이야기하면 굳이 확인할 필요 없음)
-                BufferedImage image = ImageIO.read(file.getInputStream());
-                if(image !=null){
-                    log.info("파일의 가로 길이 : {}", image.getWidth());
-                    log.info("파일의 세로 길이 : {}", image.getHeight());
-                }
+//                BufferedImage image = ImageIO.read(file.getInputStream());
+//                if(image !=null){
+//                    log.info("파일의 가로 길이 : {}", image.getWidth());
+//                    log.info("파일의 세로 길이 : {}", image.getHeight());
+//                }
 
 
                 // 원본파일명 확인
                 String originalFilename = file.getOriginalFilename();
                 if (originalFilename == null) {
+                    log.info("파일명이 없습니다.");
                     continue;
                 }
 
@@ -59,13 +60,13 @@ public class PartnerService {
                 String saveFileName = uploadPath + "/" + folderPath + "/" + uuidFileName;
 
                 Path savePath = Paths.get(saveFileName);
-
+                log.info("savePath: {}", savePath);
                 // 원본파일 저장
                 file.transferTo(savePath);
 
                 // 썸네일 저장위치
                 String thumbnailSaveName = uploadPath + File.separator + folderPath + File.separator + "thumbnail" + File.separator + "s_" + uuidFileName;
-
+                log.info("thumbnailSaveName: {}", thumbnailSaveName);
                 // 썸네일 생성
                 File thumbnailFile = new File(thumbnailSaveName);
                 Thumbnailator.createThumbnail(savePath.toFile(),thumbnailFile,100,100);
