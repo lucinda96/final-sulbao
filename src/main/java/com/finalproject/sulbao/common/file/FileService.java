@@ -66,7 +66,7 @@ public class FileService {
         // 업로드할 폴더 생성(년/월)
         String folderPath = makeFolder();
         // 저장할 파일경로 생성
-        String saveFileName = uploadDir + "/" + folderPath + "/" + uploadFileName;
+        String saveFileName = uploadDir + folderPath + "/" + uploadFileName;
 
 // 이전 파일 업로드 코드
 //        ObjectMetadata objectMetadata = setMetadata(multipartFile);
