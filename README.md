@@ -1,4 +1,4 @@
-[<img src="https://github.com/user-attachments/assets/be4600f7-af0a-4cc1-a71f-4c5f5a15d10a">](https://hansool.shop)
+[<img src="https://github.com/user-attachments/assets/be4600f7-af0a-4cc1-a71f-4c5f5a15d10a">](https://hansool.site)
 <br>
 
 ## 🍶 프로젝트 소개 : 프로젝트    ([술기로운 한 잔 홈페이지로 가기](https://hansool.site))
