@@ -1,7 +1,7 @@
 [<img src="https://github.com/user-attachments/assets/be4600f7-af0a-4cc1-a71f-4c5f5a15d10a">](https://hansool.shop)
 <br>
 
-## 🍶 프로젝트 소개 : 프로젝트    ([술기로운 한 잔 홈페이지로 가기](https://hansool.shop))
+## 🍶 프로젝트 소개 : 프로젝트    ([술기로운 한 잔 홈페이지로 가기](https://hansool.site))
 - 전통주 최저가 비교 구매, 주류 생활 커뮤니티
 - 특징 : 정확한 정보 습득 및 건전한 주류문화 형성, 최저가 전통주 구매 및 선물 서비스
 - 타겟층 : 전통주를 좋아하기 시작한 초심자, 사회초년생(20~30대)
