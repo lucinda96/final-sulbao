@@ -2,6 +2,7 @@ package com.finalproject.sulbao.proxy;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class ProxyController {
 
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(result);
     }
 
 }
